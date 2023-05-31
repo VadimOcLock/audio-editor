@@ -50,4 +50,11 @@ class AudioController(
         FileCopyUtils.copy(inputStream, response.outputStream)
         response.outputStream.flush()
     }
+
+    @GetMapping("/geter")
+    fun geter(){
+        for (i in 1..3 ){
+            println("hi!")
+        }
+    }
 }

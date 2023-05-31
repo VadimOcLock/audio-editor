@@ -13,12 +13,13 @@ version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 application {
-    mainClass.set("com.example.audioeditor.AudioEditorApplication.kt")
+    mainClass.set("com.example.audioeditor.AudioEditorApplication")
 }
 
 repositories {
     mavenCentral()
 }
+
 
 dependencies {
 //    implementation("org.springframework.boot:spring-boot-starter")
@@ -56,4 +57,14 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "com.example.audioeditor.AudioEditorApplication"
+    }
+    configurations["compileClasspath"].forEach { file: File ->
+        from(zipTree(file.absoluteFile))
+    }
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
