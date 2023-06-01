@@ -1,9 +1,5 @@
-FROM gradle:8.0.2-jdk19 AS build
-COPY --chown=gradle:gradle . /home/gradle/src
-WORKDIR /home/gradle/src
-RUN gradle build
-
 FROM openjdk:19-jdk-alpine
+VOLUME /tmp
 EXPOSE 8080
-COPY --from=build /home/gradle/src/build/libs/audio-editor-PROD.jar /app/
-ENTRYPOINT ["java","-jar","/app/audio-editor-PROD.jar"]
+ADD build/libs/audio-editor-PROD.jar app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
