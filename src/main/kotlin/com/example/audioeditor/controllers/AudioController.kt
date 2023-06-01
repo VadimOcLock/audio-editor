@@ -51,10 +51,8 @@ class AudioController(
         response.outputStream.flush()
     }
 
-    @GetMapping("/geter")
-    fun geter(){
-        for (i in 1..3 ){
-            println("hi!")
-        }
+    @GetMapping("/test")
+    fun test(): String{
+        return "It works!"
     }
 }
